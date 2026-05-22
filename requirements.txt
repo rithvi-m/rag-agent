@@ -1,10 +1,11 @@
 streamlit
 langchain
 langchain-community
-langchain-chroma
+langchain-chroma==0.1.4
 langchain-groq
 langchain-huggingface
 sentence-transformers
-chromadb
+chromadb==0.5.3
 torch
 transformers
+protobuf==4.25.3
