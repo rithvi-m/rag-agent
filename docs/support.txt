@@ -1,0 +1,11 @@
+How do I reset my password?
+Go to the login page and click "Forgot Password". Enter your email and check your inbox for a reset link. The link expires in 30 minutes.
+
+How do I cancel my subscription?
+Log in to your account, go to Settings then Billing, and click Cancel Subscription. Your access continues until the end of the billing period.
+
+Why is my payment failing?
+Common reasons include expired card, insufficient funds, or billing address mismatch. Update your payment method in Settings then Billing.
+
+How do I contact support?
+Email us at support@example.com or use the live chat in the bottom right corner. We respond within 24 hours.
