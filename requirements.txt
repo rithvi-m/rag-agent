@@ -8,5 +8,5 @@ sentence-transformers
 chromadb
 torch
 transformers
-protobuf
+protobuf==3.20.3
 pypdf
