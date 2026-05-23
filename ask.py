@@ -1,42 +1,28 @@
-import os
-from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_chroma import Chroma
-from langchain_groq import ChatGroq
+from rag import answer_question
 
-# 1. Load the embedding model
-embedding_model = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 
-# 2. Open your ChromaDB
-vectorstore = Chroma(
-    persist_directory="./chroma_db",
-    embedding_function=embedding_model
-)
+def main() -> None:
+    print("\nRAG Support Agent ready. Type 'quit' to exit.\n")
 
-# 3. Connect to Groq
-llm = ChatGroq(
-    api_key=st.secrets["GROQ_API_KEY"],
-    model_name="llama-3.1-8b-instant"
-)
+    while True:
+        question = input("You: ").strip()
+        if question.lower() in {"quit", "exit"}:
+            print("Goodbye!")
+            break
+        if not question:
+            continue
 
-# 4. Retriever
-retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
+        try:
+            answer, sources = answer_question(question)
+        except RuntimeError as error:
+            print(f"\nError: {error}\n")
+            break
 
-# 5. Ask function
-def ask(question):
-    docs = retriever.invoke(question)
-    context = "\n".join(d.page_content for d in docs)
-    response = llm.invoke(f"Answer using only this context:\n{context}\n\nQuestion: {question}")
-    return response.content
+        print(f"\nAgent: {answer}")
+        if sources:
+            print("Sources: " + ", ".join(sources))
+        print()
 
-# 6. Chat loop
-print("\n🤖 RAG Support Agent Ready! Type 'quit' to exit.\n")
 
-while True:
-    question = input("You: ").strip()
-    if question.lower() == "quit":
-        print("Goodbye!")
-        break
-    if not question:
-        continue
-    answer = ask(question)
-    print(f"\nAgent: {answer}\n")
+if __name__ == "__main__":
+    main()
