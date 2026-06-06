@@ -1,48 +1,36 @@
-# RAG Support Agent
+#RAG Support Agent 🤖
 
-A small RAG support assistant built with Streamlit, LangChain, ChromaDB, Hugging Face embeddings, and Groq chat models.
+An AI-powered support assistant built with Retrieval-Augmented 
+Generation (RAG) — deployed live on Streamlit Cloud.
 
-## Setup
+🌐 Live Demo: rag-agent-klwhga7y6tfnbblzrj2qsh.streamlit.app
 
-```powershell
+What it does
+Upload your own documents (.txt, .md, .pdf) and ask questions 
+about them. The agent retrieves relevant context and answers 
+using Groq's LLM — no hallucinations, grounded responses only.
+
+🛠️ Tech Stack
+- Streamlit — frontend UI
+- LangChain — RAG pipeline
+- ChromaDB — vector database
+- Hugging Face — embeddings
+- Groq — LLM (chat model)
+
+Setup
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
-```
 
-Set your Groq API key:
-
-```powershell
-$env:GROQ_API_KEY="your-groq-api-key"
-```
-
-For Streamlit Cloud or local Streamlit secrets, copy `.streamlit/secrets.toml.example`
-to `.streamlit/secrets.toml`, then add your real key:
-
-```toml
+Add your Groq API key in .streamlit/secrets.toml:
 GROQ_API_KEY = "your-groq-api-key"
-```
 
-## Add Documents
-
-Put `.txt`, `.md`, or `.pdf` files in the `docs` folder, then build the vector database:
-
-```powershell
+Add Documents
+Put .txt, .md, or .pdf files in the docs folder, then run:
 python ingest.py
-```
 
-## Run The App
-
-```powershell
+Run The App
 python -m streamlit run app.py
-```
 
-The sidebar lets you upload new `.txt`, `.md`, or `.pdf` files and re-index the knowledge base.
-
-## Run From Terminal
-
-```powershell
-python ask.py
-```
-
-Type `quit` or `exit` to stop the terminal chat.
+---
+Built by Rithvi M | github.com/rithvi-m
